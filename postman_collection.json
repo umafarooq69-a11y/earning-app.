@@ -1,0 +1,236 @@
+{
+  "info": {
+    "name": "Earning App API (MVP)",
+    "_postman_id": "e5e2ee8b-0c2f-49e1-bb8e-aaa000111222",
+    "description": "Basic collection to test auth, wallet, referral, withdrawal.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Request OTP (mock)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"phone\": \"03001234567\"}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/auth/otp/request",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "otp",
+            "request"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Verify OTP (mock login)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"phone\": \"03001234567\", \"code\": \"123456\", \"name\": \"Test User\"}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/auth/otp/verify",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "otp",
+            "verify"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Wallet - Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/wallet/me",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "wallet",
+            "me"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Wallet - Spin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/wallet/spin",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "wallet",
+            "spin"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Wallet - Checkin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/wallet/checkin",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "wallet",
+            "checkin"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Referral - Code",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/referral/code",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "referral",
+            "code"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Referral - Apply",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"code\": \"RCABCDE\"}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/wallet/apply-referral",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "wallet",
+            "apply-referral"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Withdrawal - Request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer <token>"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"amount\": 200, \"method\": \"jazzcash\", \"account\": \"03001234567\"}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/api/withdrawal/request",
+          "host": [
+            "http://localhost:4000"
+          ],
+          "path": [
+            "api",
+            "withdrawal",
+            "request"
+          ]
+        }
+      }
+    }
+  ]
+}

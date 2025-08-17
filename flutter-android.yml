@@ -1,0 +1,58 @@
+
+name: Build Android APK (Flutter)
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: |
+          cd app
+          flutter pub get
+
+      - name: Build debug APK
+        run: |
+          cd app
+          flutter build apk --debug
+
+      - name: Upload APK artifact (debug)
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+
+      - name: Build release APK (unsigned by default)
+        run: |
+          cd app
+          flutter build apk --release
+
+      - name: Upload APK artifact (release-unsigned)
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-unsigned-apk
+          path: app/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
